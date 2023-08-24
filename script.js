@@ -1,12 +1,20 @@
-fetch('https://api.giphy.com/v1/gifs/random?api_key=[apikeygoeshere]&tag=squirrel&rating=g')
+fetch('https://api.giphy.com/v1/gifs/random?api_key=[api key goes here]&tag=sea+otter&rating=g')
 .then(function(response) {
 	return response.json();
 })
 .then(function(jsonData) {
 	console.log(jsonData);
-	var gifUrl = jsonData.data.images.original.url;
-	console.log(gifUrl);
-	var gifImg = document.createElement("img");
-	gifImg.setAttribute("src", gifUrl);
-	document.body.appendChild(gifImg)
+	var gifUrl = jsonData.data.images.original.url
+	console.log(gifUrl)
+
+	//Create gif on page
+	var gif = document.createElement('img');
+	gif.setAttribute('src', gifUrl);
+	document.body.appendChild(gif)
+
+	//Add gif title
+	var titleText = jsonData.data.title;
+	var title = document.createElement('h3');
+	title.innerText = titleText;
+	document.body.appendChild(title);
 })
